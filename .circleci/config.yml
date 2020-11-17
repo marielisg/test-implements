@@ -27,7 +27,7 @@ jobs:
       - run: sudo docker-php-ext-install zip
 
       - run: sudo pecl channel-update pecl.php.net
-      - run: sudo pecl install xdebug && sudo docker-php-ext-enable xdebug
+      - run: sudo docker-php-ext-enable xdebug
       - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       # Download and cache dependencies
       - restore_cache:
