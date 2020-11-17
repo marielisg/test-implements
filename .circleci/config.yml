@@ -5,6 +5,8 @@
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: fe07d376899d0511328c5c3032046ebc43c9db9733374c8e99b41f017f4d79a9
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
@@ -24,6 +26,9 @@ jobs:
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
 
+      - run: sudo pecl channel-update pecl.php.net
+      - run: sudo pecl install xdebug && sudo docker-php-ext-enable xdebug
+      - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -33,7 +38,11 @@ jobs:
             - v1-dependencies-
 
       - run: composer install -n --prefer-dist
-
+      - run: chmod +x ./cc-test-reporter
+      - run: sudo mkdir -p $CIRCLE_TEST_REPORTS/phpunit
+      - run: ./cc-test-reporter before-build
+      - run: sudo vendor/bin/phpunit --coverage-clover clover.xml
+      - run: ./cc-test-reporter after-build -t clover --exit-code $?
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
