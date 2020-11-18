@@ -43,7 +43,7 @@ jobs:
       - run: ./cc-test-reporter before-build
       - run: sudo vendor/bin/phpunit --coverage-clover clover.xml
       #- run: ./cc-test-reporter after-build -t clover --exit-code $?
-      - run: ./cc-test-reporter after-build --debug -t lcov --exit-code $?
+      - run: ./cc-test-reporter after-build -t clover
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
