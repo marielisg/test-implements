@@ -32,4 +32,40 @@ class UsersController extends Controller
 
         return response()->json($data);
     }
+
+    public function updateTwo()
+    {
+        $data = [
+            'status' => 'success',
+        ];
+
+        return response()->json($data);
+    }
+
+    public function updateThree()
+    {
+        $data = [
+            'status' => 'success',
+        ];
+
+        return response()->json($data);
+    }
+
+    public function updateFour()
+    {
+        $data = [
+            'status' => 'success',
+        ];
+
+        return response()->json($data);
+    }
+
+    public function updateFive()
+    {
+        $data = [
+            'status' => 'success',
+        ];
+
+        return response()->json($data);
+    }
 }
