@@ -5,8 +5,6 @@
 version: 2
 jobs:
   build:
-    environment:
-      CC_TEST_REPORTER_ID: fe07d376899d0511328c5c3032046ebc43c9db9733374c8e99b41f017f4d79a9
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
@@ -25,67 +23,36 @@ jobs:
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
-      - run:
-          name: Setup dependencies
-          command: |
-            sudo composer self-update
-            composer install -n --prefer-dist
-      - run:
-          name: Setup dependencies
-          command: |
-            sudo composer self-update
-            composer install -n --prefer-dist
-      - run:
-          name: Setup Code Climate test-reporter
-          command: |
-            # download test reporter as a static binary
-                     curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-                     chmod +x ./cc-test-reporter
-      - run:
-          name: Run tests
-          command: |
-            sudo docker-php-ext-enable xdebug
-            ./cc-test-reporter before-build
-            sudo vendor/bin/phpunit --coverage-clover clover.xml
-            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
 
-#      - run: sudo pecl channel-update pecl.php.net
-#      - run: sudo docker-php-ext-enable xdebug
-#      - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
       # Download and cache dependencies
-#      - restore_cache:
-#          keys:
-#            # "composer.lock" can be used if it is committed to the repo
-#            - v1-dependencies-{{ checksum "composer.json" }}
-#            # fallback to using the latest cache if no exact match is found
-#            - v1-dependencies-
+      - restore_cache:
+          keys:
+            # "composer.lock" can be used if it is committed to the repo
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-#      - run: composer install -n --prefer-dist
-#      - run: chmod +x ./cc-test-reporter
-#      - run: sudo mkdir -p $CIRCLE_TEST_REPORTS/phpunit
-#      - run: ./cc-test-reporter before-build
-#      - run: sudo vendor/bin/phpunit --coverage-clover clover.xml
-#      #- run: ./cc-test-reporter after-build -t clover --exit-code $?
-#      - run: ./cc-test-reporter after-build -t clover --exit-code $CIRCLE_TEST_REPORTS/phpunit
-#      - save_cache:
-#          key: v1-dependencies-{{ checksum "composer.json" }}
-#          paths:
-#            - ./vendor
-#            - restore_cache:
-#                keys:
-#                  - node-v1-{{ checksum "package.json" }}
-#                  - node-v1-
-#            - run: yarn install
-#            - save_cache:
-#                key: node-v1-{{ checksum "package.json" }}
-#                paths:
-#                  - node_modules
-#
-#       prepare the database
-#      - run: touch storage/testing.sqlite
-#      - run: php artisan migrate --env=testing --database=sqlite_testing --force
-#
-#       run tests with phpunit or codecept
-#      - run: ./vendor/bin/phpunit
-#      - run: ./vendor/bin/codecept build
-#      - run: ./vendor/bin/codecept run
+      - run: composer install -n --prefer-dist
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+      #      - restore_cache:
+      #          keys:
+      #            - node-v1-{{ checksum "package.json" }}
+      #            - node-v1-
+      #      - run: yarn install
+      #      - save_cache:
+      #          key: node-v1-{{ checksum "package.json" }}
+      #          paths:
+      #            - node_modules
+
+      # prepare the database
+      #- run: touch storage/testing.sqlite
+      #- run: php artisan migrate --env=testing --database=sqlite_testing --force
+
+      # run tests with phpunit or codecept
+      - run: ./vendor/bin/phpunit --coverage-clover tests/report
+      #- run: ./vendor/bin/codecept build
+      #- run: ./vendor/bin/codecept run
