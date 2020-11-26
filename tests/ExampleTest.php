@@ -16,7 +16,7 @@ class ExampleTest extends TestCase
 
         $this->assertEquals(
             json_encode([
-                'message' => 'pings',
+                'message' => 'ping',
                 'timezone' => time(),
             ]), $this->response->getContent()
         );
@@ -29,7 +29,7 @@ class ExampleTest extends TestCase
             json_encode( [
                 [
                     'id' => 1,
-                    'name' => 'Mariso',
+                    'name' => 'Mario',
                 ],[
                     'id' => 2,
                     'name' => 'Luigi',
@@ -43,7 +43,7 @@ class ExampleTest extends TestCase
         $this->put('/api/v1/users');
         $this->assertEquals(
             json_encode( [
-                'status' => 'successs',
+                'status' => 'success',
             ]), $this->response->getContent()
         );
     }
