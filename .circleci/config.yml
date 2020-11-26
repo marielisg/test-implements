@@ -60,11 +60,9 @@ jobs:
       - run:
           command: |
             mkdir -p ~/phpunit
-            ./vendor/bin/phpunit --coverage-clove ~/phpunit/clover.xml tests
+            ./vendor/bin/phpunit --coverage-clover ~/phpunit/clover.xml tests
           when: always
       - store_test_results:
-          path: ~/phpunit
-      - store_artifacts:
           path: ~/phpunit
 
 
