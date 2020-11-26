@@ -56,16 +56,16 @@ jobs:
 #      - run:   ./vendor/bin/phpunit --coverage-clover "${CIRCLE_ARTIFACTS}/phpunit/clover.xml"
 #      - store_artifacts:
 #          path: ${CIRCLE_ARTIFACTS}/phpunit/
-      steps:
-        - run:
-            command: |
-              mkdir -p ~/phpunit
-              ./vendor/bin/phpunit --coverage-clove ~/phpunit/clover.xml tests
-            when: always
-        - store_test_results:
-            path: ~/phpunit
-        - store_artifacts:
-            path: ~/phpunit
+
+      - run:
+          command: |
+            mkdir -p ~/phpunit
+            ./vendor/bin/phpunit --coverage-clove ~/phpunit/clover.xml tests
+          when: always
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ~/phpunit
 
 
 
