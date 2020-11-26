@@ -29,7 +29,7 @@ class ExampleTest extends TestCase
             json_encode( [
                 [
                     'id' => 1,
-                    'name' => 'Mario',
+                    'name' => 'Marios',
                 ],[
                     'id' => 2,
                     'name' => 'Luigi',
