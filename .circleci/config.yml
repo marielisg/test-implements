@@ -53,9 +53,11 @@ jobs:
       #- run: php artisan migrate --env=testing --database=sqlite_testing --force
 
       # run tests with phpunit or codecept
-      - run:  ./vendor/bin/phpunit
-      - store_test_results:
-          path: tests/report
+      - run:   ./vendor/bin/phpunit --coverage-clover phpunit-out/clover.xml
+      - store_artifacts:
+          path: phpunit-out/
+
+
 
       #- run: ./vendor/bin/codecept build
       #- run: ./vendor/bin/codecept run

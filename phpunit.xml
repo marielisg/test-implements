@@ -25,7 +25,7 @@
             <directory suffix=".php">app</directory>
         </include>
         <report>
-<!--            <clover outputFile="./tests/report/clover.xml"/>-->
+            <clover outputFile="./tests/report/clover.xml"/>
 <!--            <crap4j outputFile="./tests/report/crap4j.xml" threshold="50"/>-->
 <!--            <html outputDirectory="./tests/report/html-coverage" lowUpperBound="50" highLowerBound="90"/>-->
 <!--            <php outputFile="./tests/report/coverage.php"/>-->
