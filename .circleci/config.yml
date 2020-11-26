@@ -55,7 +55,7 @@ jobs:
       # run tests with phpunit or codecept
       - run:   ./vendor/bin/phpunit --coverage-clover phpunit-out/clover.xml
       - store_artifacts:
-          path: phpunit-out/
+          path: phpunit-out/clover.xml
 
 
 
