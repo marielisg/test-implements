@@ -56,7 +56,7 @@ jobs:
 #      - run:   ./vendor/bin/phpunit --coverage-clover "${CIRCLE_ARTIFACTS}/phpunit/clover.xml"
 #      - store_artifacts:
 #          path: ${CIRCLE_ARTIFACTS}/phpunit/
-      - run: ./vendor/bin/phpcs --standard=PSR12 app
+      - run: ./vendor/bin/phpcs --standard=PSR2 app
 
       - run:
           command: |
@@ -67,9 +67,3 @@ jobs:
           path: ~/phpunit
       - store_artifacts:
           path: ~/phpunit
-
-
-
-      #- run: ./vendor/bin/codecept build
-      #- run: ./vendor/bin/codecept run
-
