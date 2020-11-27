@@ -68,4 +68,13 @@ class UsersController extends Controller
 
         return response()->json($data);
     }
+
+    public function create()
+    {
+        $data = [
+            'status' => 'success',
+        ];
+
+        return response()->json($data);
+    }
 }
