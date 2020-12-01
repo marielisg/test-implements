@@ -55,6 +55,7 @@ class ExampleTest extends TestCase
         $this->assertEquals(
             json_encode( [
                 'status' => 'success',
+                'statusTwo' => 'success',
             ]), $this->response->getContent()
         );
     }
