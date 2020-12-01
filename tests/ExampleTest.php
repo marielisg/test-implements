@@ -47,4 +47,14 @@ class ExampleTest extends TestCase
             ]), $this->response->getContent()
         );
     }
+
+    public function testCreateUser()
+    {
+        $this->post('/api/v1/users');
+        $this->assertEquals(
+            json_encode( [
+                'status' => 'success',
+            ]), $this->response->getContent()
+        );
+    }
 }

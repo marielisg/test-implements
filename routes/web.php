@@ -17,6 +17,7 @@ $router->get('/ping', function () use ($router) {
     return [
         'message' => 'ping',
         'timezone' => time(),
+        'environment' => env('APP_ENV'),
     ];
 });
 
@@ -25,12 +26,7 @@ $router->get('/error', function () use ($router) {
 });
 
 $router->group(['prefix' => '/api/v1'], function ($router) {
-    $router->get(
-        '/users',
-        'UsersController@getUsers'
-    );
-    $router->put(
-        '/users',
-        'UsersController@update'
-    );
+    $router->get('/users', 'UsersController@getUsers');
+    $router->put('/users', 'UsersController@update');
+    $router->post('/users', 'UsersController@create');
 });
