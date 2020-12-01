@@ -18,6 +18,7 @@ class ExampleTest extends TestCase
             json_encode([
                 'message' => 'ping',
                 'timezone' => time(),
+                'environment' => env('APP_ENV')
             ]), $this->response->getContent()
         );
     }
