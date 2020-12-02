@@ -26,12 +26,11 @@ $router->get('/ping', function () use ($router) {
     return [
         'message' => 'ping',
         'timezone' => time(),
-//        'environment' => env('APP_ENV'),
     ];
 });
 
 $router->get('/error', function () use ($router) {
-    throw new Exception('Sentry error!');
+    throw new Exception('This is a test error!');
 });
 
 $router->group(['prefix' => '/api/v1'], function ($router) {
