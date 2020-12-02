@@ -17,7 +17,7 @@ $router->get('/ping', function () use ($router) {
     return [
         'message' => 'ping',
         'timezone' => time(),
-        'environment' => env('APP_ENV'),
+//        'environment' => env('APP_ENV'),
     ];
 });
 

@@ -49,3 +49,10 @@ jobs:
           path: ~/phpunit
       - store_artifacts:
           path: ~/phpunit
+  deploy:
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:0919098f-bc1e-4b92-a0fc-8a801c26de1c@git.heroku.com/test-implement.git master
