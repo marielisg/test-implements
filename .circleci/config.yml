@@ -59,14 +59,18 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Setup Heroku
-          command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
-
-      - run:
           command: |
-            git push heroku sequential-branch-filter:master
-            sleep 5 # sleep for 5 seconds to wait for dynos
-            heroku restart
+            git push https://heroku:0919098f-bc1e-4b92-a0fc-8a801c26de1c@git.heroku.com/test-implement.git master
+#      - run:
+#          name: Setup Heroku
+#          command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
+#
+#      - run:
+#          command: |
+#            git push heroku sequential-branch-filter:master
+#            sleep 5 # sleep for 5 seconds to wait for dynos
+#            heroku restart
+
 
 workflows:
   version: 2
