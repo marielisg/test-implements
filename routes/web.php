@@ -16,6 +16,8 @@
 $router->get('/', function () use ($router) {
     return [
         'status' => 'OK',
+        'name' => env('APP_NAME'),
+        'env' => env('APP_ENV'),
         'timezone' => time(),
     ];
 });
