@@ -3,7 +3,6 @@
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
 version: 2.0
-
 jobs:
   build:
     docker:
@@ -78,6 +77,3 @@ workflows:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only: sequential-branch-filter
