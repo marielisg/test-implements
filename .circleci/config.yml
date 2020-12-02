@@ -19,37 +19,37 @@ jobs:
       #
       # - image: redis:2.8.19
 
-      steps:
-        - checkout
+    steps:
+      - checkout
 
-        - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-        - run: sudo docker-php-ext-install zip
+      - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
+      - run: sudo docker-php-ext-install zip
 
-        # Download and cache dependencies
-        - restore_cache:
-            keys:
-              # "composer.lock" can be used if it is committed to the repo
-              - v1-dependencies-{{ checksum "composer.json" }}
-              # fallback to using the latest cache if no exact match is found
-              - v1-dependencies-
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            # "composer.lock" can be used if it is committed to the repo
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-        - run: composer install -n --prefer-dist
+      - run: composer install -n --prefer-dist
 
-        - save_cache:
-            key: v1-dependencies-{{ checksum "composer.json" }}
-            paths:
-              - ./vendor
-        - run: ./vendor/bin/phpcs --standard=PSR2 app
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+      - run: ./vendor/bin/phpcs --standard=PSR2 app
 
-        - run:
-            command: |
-              mkdir -p ~/phpunit
-              ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml tests
-            when: always
-        - store_test_results:
-            path: ~/phpunit
-        - store_artifacts:
-            path: ~/phpunit
+      - run:
+          command: |
+            mkdir -p ~/phpunit
+            ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml tests
+          when: always
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ~/phpunit
 
   deploy:
     machine:
