@@ -13,6 +13,13 @@
 |
 */
 
+$router->get('/', function () use ($router) {
+    return [
+        'status' => 'OK',
+        'timezone' => time(),
+    ];
+});
+
 $router->get('/ping', function () use ($router) {
     return [
         'message' => 'ping',
