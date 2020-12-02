@@ -55,7 +55,7 @@ jobs:
       enabled: true
     working_directory: ~/circleci-demo-workflows
     environment:
-      HEROKU_APP: "sleepy-refuge-55486" # define env var $HEROKU_APP
+      HEROKU_APP: "test-implement" # define env var $HEROKU_APP
     steps:
       - checkout
       - run:
@@ -65,7 +65,6 @@ jobs:
       - run:
           command: |
             git push heroku sequential-branch-filter:master
-            heroku run rake db:migrate
             sleep 5 # sleep for 5 seconds to wait for dynos
             heroku restart
 
