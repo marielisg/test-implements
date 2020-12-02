@@ -50,6 +50,10 @@ jobs:
       - store_artifacts:
           path: ~/phpunit
   deploy:
+    machine:
+      enabled: true
+      working_directory: ~/circleci-demo-workflows
+      steps:
     steps:
       - checkout
       - run:
