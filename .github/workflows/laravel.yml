@@ -17,12 +17,7 @@ jobs:
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Directory Permissions
-      run: chmod -R 777 storage bootstrap/cache
     - name: Execute phpcs
       run: vendor/bin/phpcs --standard=PSR2 app
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
