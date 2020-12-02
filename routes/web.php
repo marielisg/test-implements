@@ -30,7 +30,7 @@ $router->get('/ping', function () use ($router) {
 });
 
 $router->get('/error', function () use ($router) {
-    throw new Exception('This is a error!');
+    throw new Exception('Sentry error!');
 });
 
 $router->group(['prefix' => '/api/v1'], function ($router) {
