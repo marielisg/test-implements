@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.6.8
         with:
-          heroku_api_key: "0919098f-bc1e-4b92-a0fc-8a801c26de1c"
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "test-implement"
-          heroku_email: "mgarcia@octopus.com.ar"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
           healthcheck: "https:///test-implement.herokuapp.com/health"
