@@ -1,0 +1,17 @@
+name: deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.6.8
+        with:
+          heroku_api_key: "0919098f-bc1e-4b92-a0fc-8a801c26de1c"
+          heroku_app_name: "test-implement"
+          heroku_email: "mgarcia@octopus.com.ar"
+          healthcheck: "https:///test-implement.herokuapp.com/health"
